@@ -29,11 +29,12 @@ By default, the system creates an account `admin@itest.info` with the password `
 
 ## Entities
 
+
 ### Category
 
 - name
 - user_id: creator of the category
-- behavior
+- record_kls: 
 
 ### Body Part
 
@@ -55,10 +56,55 @@ Fields of exersice
 
 A workout template contains several exercises.
 
-### Workout
+- name
+- user_id
 
-A workout contains only _one_ template and several workout records.
+### Defined Items
+
+- exercise_id
+- template_id
+
+### Event
+
+An event contains only _one_ template and several workout records.
+
+- name 
+- template_id
 
 ### Workout Records
 
 Each workout records belongs to an exercise.
+
+- reps
+- weight
+- duration
+- distance
+- user_id
+
+### RepsOnlyRecords
+
+STI, parent is WorkoutRecords
+
+- reps
+- user_id
+
+### DurationRecords
+
+STI, parent is WorkoutRecords
+
+- duration
+- user_id
+
+### StrengthRecords
+
+STI, parent is WorkoutRecords
+- reps
+- weight
+- user_id
+
+### CardioRecords
+
+STI, parent is WorkoutRecords
+- duration
+- distance
+- user_id

@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: categories
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  record_kls :string
+#  user_id    :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  name: MyString
+  record_kls: MyString
+  user: one
+
+two:
+  name: MyString
+  record_kls: MyString
+  user: two
