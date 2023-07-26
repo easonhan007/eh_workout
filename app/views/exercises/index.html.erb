@@ -1,14 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Exercises</h1>
-
-<div id="exercises">
-  <% @exercises.each do |exercise| %>
-    <%= render exercise %>
-    <p>
-      <%= link_to "Show this exercise", exercise %>
-    </p>
-  <% end %>
-</div>
+<h3 class="my-4">Exercises</h3 class="my-4">
 
 <%= link_to "New exercise", new_exercise_path %>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @exercises.each do |exercise| %>
+    <div class="col">
+      <div class="card">
+        <img class="card-img-top" src="https://plus.unsplash.com/premium_photo-1690297971162-5fe7ddf2c48d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1358&q=80" alt="">
+        <div class="card-body">
+          <div class="card-title"><%= exercise.name %></div>
+          <div class="card-text">
+            <p><%= exercise.body_part.name%></p>
+            <p><%= exercise.category.name%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

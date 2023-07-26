@@ -14,4 +14,7 @@ class Template < ApplicationRecord
   belongs_to :user
 
   validates :name, presence: true
+
+  scope :system, -> { where(user_id: 1) }
+  scope :user, -> {|user_id| where(user_id: user_id)}
 end
