@@ -6,10 +6,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <a class="nav-link" href="#">Workout</a>
-        <%= link_to 'Exercise', exercises_path, class: 'nav-link' %>
-        <%= link_to 'History', events_path, class: 'nav-link' %>
+        <a class="nav-link <%= is_active('/')%>" href="/">Home</a>
+        <%= link_to 'Exercise', exercises_path, class: 'nav-link' + is_active(exercises_path) %>
+        <%= link_to 'Template', templates_path, class: 'nav-link' + is_active(templates_path) %>
+        <%= link_to 'History', events_path, class: 'nav-link' + is_active(events_path) %>
+        <%= button_to 'Logout', destroy_user_session_path, method: 'delete', class:'nav-link link-danger', data:{turbo_method: 'delete'}%>
       </div>
     </div>
   </div>

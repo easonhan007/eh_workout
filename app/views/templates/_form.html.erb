@@ -1,7 +1,7 @@
 <%= form_with(model: template) do |form| %>
   <% if template.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(template.errors.count, "error") %> prohibited this template from being saved:</h2>
+      <h4><%= pluralize(template.errors.count, "error") %> prohibited this template from being saved:</h4>
 
       <ul>
         <% template.errors.each do |error| %>
@@ -11,17 +11,30 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-4">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control', required: '' %>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+  <div class="mb-4">
+    <label for="" class="form-label">Exercises</label>
+    <%= form.fields_for :defined_items do |item_form|%>
+      <div class="row g-3 p-1">
+        <div class="col">
+          <%= item_form.collection_select :exercise_id, Exercise.sys_and(current_user).all, :id, :name, {}, class: 'form-select'%>
+        </div>
+        <div class="col-1">
+          <label for="set" class="col-form-label">Sets</label>
+        </div>
+        <div class="col-2">
+          <%= item_form.number_field(:set, class: 'form-control', min: '1') %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
+
   <div>
-    <%= form.submit %>
+    <%= form.submit(class: 'btn btn-outline-primary')%>
   </div>
 <% end %>

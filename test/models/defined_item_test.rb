@@ -7,6 +7,7 @@
 #  exercise_id :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  set         :integer          default(1)
 #
 require "test_helper"
 

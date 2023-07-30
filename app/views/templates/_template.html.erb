@@ -1,12 +1,14 @@
-<div id="<%= dom_id template %>">
-  <p>
-    <strong>Name:</strong>
-    <%= template.name %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= template.user_id %>
-  </p>
-
+<div class="card h-100">
+  <div class="card-body">
+    <h5 class="card-title"> <%= dark_link template.name, template_path(template) %></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">created <%= time_ago_in_words template.created_at %> ago </h6>
+    <p class="card-text">
+      <ul>
+        <% template.exercises.each do |ex|%>
+          <li><%= dark_link ex.name, exercise_path(ex) %> x <%= DefinedItem.by_exercise(ex).by_template(template).first.set %></li>
+        <% end %>
+      </ul>
+    </p>
+    <%= link_to 'workout', workout_path(template.id), class: 'btn btn-success card-link'%>
+  </div>
 </div>

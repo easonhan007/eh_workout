@@ -1,27 +1,14 @@
-<div id="<%= dom_id exercise %>">
-  <p>
-    <strong>Name:</strong>
-    <%= exercise.name %>
-  </p>
+  <div class="card text-bg-dark w-100 mx-auto">
+  <% img_src = exercise.image.blank? ?  default_img : exercise.image %>
+    <img src="<%= img_src %>" class="card-img" alt="<%= exercise.name %>">
+    <div class="card-img-overlay">
+      <h3 class="card-title">
+        <%= exercise.name %>
+      </h3>
+      <p class="card-text"><%= exercise.body_part.name %></p>
+      <p class="card-text"><small><%= exercise.category.name %></small></p>
+    </div>
+  </div>
+  <% desc = exercise.description.blank? ? 'No description yet' : exercise.description %>
+  <article class="my-2"><%= to_md desc %></article>
 
-  <p>
-    <strong>Image:</strong>
-    <%= exercise.image %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
-    <%= exercise.category_id %>
-  </p>
-
-  <p>
-    <strong>Body part:</strong>
-    <%= exercise.body_part_id %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= exercise.user_id %>
-  </p>
-
-</div>

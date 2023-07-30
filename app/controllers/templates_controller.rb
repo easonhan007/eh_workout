@@ -3,7 +3,8 @@ class TemplatesController < ApplicationController
 
   # GET /templates or /templates.json
   def index
-    @templates = Template.all
+    @pagy, @user_templates = pagy(current_user.templates.by_created.all)
+    @system_templates = Template.system.by_created.all
   end
 
   # GET /templates/1 or /templates/1.json
@@ -13,6 +14,7 @@ class TemplatesController < ApplicationController
   # GET /templates/new
   def new
     @template = Template.new
+    3.times {@template.defined_items.build}
   end
 
   # GET /templates/1/edit
@@ -22,6 +24,7 @@ class TemplatesController < ApplicationController
   # POST /templates or /templates.json
   def create
     @template = Template.new(template_params)
+    @template.user = current_user
 
     respond_to do |format|
       if @template.save
@@ -65,6 +68,6 @@ class TemplatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def template_params
-      params.require(:template).permit(:name, :user_id)
+      params.require(:template).permit(:name, defined_items_attributes: [:id, :exercise_id, :set])
     end
 end

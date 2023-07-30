@@ -1,9 +1,10 @@
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: %i[ show edit update destroy ]
+  before_action :set_mine_exercise, only: %i[edit update destroy ]
 
   # GET /exercises or /exercises.json
   def index
-    @exercises = Exercise.all
+    @pagy, @exercises = pagy(Exercise.sys_and(current_user).by_created.all)
   end
 
   # GET /exercises/1 or /exercises/1.json
@@ -22,6 +23,7 @@ class ExercisesController < ApplicationController
   # POST /exercises or /exercises.json
   def create
     @exercise = Exercise.new(exercise_params)
+    @exercise.user = current_user
 
     respond_to do |format|
       if @exercise.save
@@ -60,11 +62,15 @@ class ExercisesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_exercise
-      @exercise = Exercise.find(params[:id])
+      @exercise = Exercise.sys_and(current_user).find(params[:id])
+    end
+
+    def set_mine_exercise
+      @exercise = current_user.exercises.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def exercise_params
-      params.require(:exercise).permit(:name, :image, :category_id, :body_part_id, :user_id)
+      params.require(:exercise).permit(:name, :image, :category_id, :body_part_id, :description)
     end
 end

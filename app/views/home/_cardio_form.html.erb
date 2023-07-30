@@ -1,0 +1,18 @@
+<div class="mb-2 row">
+    <%= form_with(model: record) do |f| %>
+        <div class="row mb-2">
+            <div class="col-auto">
+                <%= f.label(:distance, class: 'col-form-label') %>
+            </div>
+            <div class="col-auto">
+                <%= f.number_field(:distance, class: 'form-control', min: 1)%>
+            </div>
+            <div class="col-auto">
+                <%= f.label(:duration, class: 'col-form-label') %>
+            </div>
+            <div class="col-auto">
+                <%= f.number_field(:duration, class: 'form-control', min: 1)%>
+            </div>
+        </div>
+    <% end %>
+</div>
