@@ -56,10 +56,11 @@ templates = [
   {name: 'Full Body',  exercises: ["Plank", "Push Up", "Running"]}
 ]
 
+puts "Creating system template"
 templates.each do |temp|
   puts "creating template #{temp[:name]}"
   exercises = Exercise.where(name: temp[:exercises]).all
-  t = Template.find_or_create_by!(name: temp[:name], user_id: admin.id, exercises: exercises)
+  t = Template.find_or_create_by!(name: temp[:name], user_id: admin.id)
   t.exercises = exercises
   t.save()
 end #each

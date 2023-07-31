@@ -1,7 +1,13 @@
 <div id="<%= dom_id event %>" class="card">
   <div class="card-body">
     <h5 class="card-title"><%= dark_link event.name, event_path(event) %></h5>
-    <p class="card-text"><%= event.template.name %></p>
+    <p class="card-text"><%= event.template.name %>
+      <ul>
+        <% event.workout_records.each do |record| %>
+          <%= render partial: 'workout_record', locals: {record: record} %>
+        <% end %>
+      </ul>
+    </p>
   </div>
   <div class="card-footer">
     <small class="text-body-secondary"><%= time_ago_in_words(event.created_at) %> ago</small>

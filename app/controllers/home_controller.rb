@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   def workout
     @template = Template.sys_and(current_user).find(params[:template_id])
 
-    @event = Event.new(template_id: @template.id)
+    @event = Event.new(template_id: @template.id, user_id: current_user.id)
     @event.save!()
     @event.config = []
 

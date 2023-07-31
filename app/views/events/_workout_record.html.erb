@@ -1,0 +1,15 @@
+<li>
+    <span> <%= record.exercise.name %> </span>
+    <% if record.weight %>
+        <small class="text text-secondary ps-2"><%= record.weight%> KG</small> 
+    <% end %>
+    <% if record.distance %>
+        <small class="text text-secondary ps-2"><%= record.distance%> M</small> 
+    <% end %>
+    <% if record.reps %>
+        <small class="text text-secondary ps-2"><%= record.reps%> Reps</small > 
+    <% end %>
+    <% if record.duration %>
+        <small class="text text-secondary ps-2"><%= record.duration%> Minutes</small> 
+    <% end %>
+</li>
