@@ -1,4 +1,4 @@
-<div class="mb-2 row">
+<%= turbo_frame_tag "cardio" do %>
     <%= form_with(model: record) do |f| %>
         <div class="row mb-2">
             <div class="col-auto">
@@ -15,4 +15,4 @@
             </div>
         </div>
     <% end %>
-</div>
+<% end #turbo%>

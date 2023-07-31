@@ -1,6 +1,18 @@
-<div class="mb-2 row">
-    <div class="col-auto"><label for="" class="pt-2">Weight</label></div>
-    <div class="col-auto"><input type="number" class="form-control" min=0 placeholder="m" name="records[]weight"></div>
-    <div class="col-auto"><label for="" class="pt-2">Reps</label></div>
-    <div class="col-auto"><input type="number" class="form-control" min=0 placeholder="seconds" name="records[]reps"></div>
-</div>
+<%= turbo_frame_tag 'strength' do%>
+    <%= form_with(model: record) do |f| %>
+        <div class="row mb-2">
+            <div class="col-auto">
+                <%= f.label(:weight, class: 'col-form-label') %>
+            </div>
+            <div class="col-auto">
+                <%= f.number_field(:weight, class: 'form-control', min: 1)%>
+            </div>
+            <div class="col-auto">
+                <%= f.label(:reps, class: 'col-form-label') %>
+            </div>
+            <div class="col-auto">
+                <%= f.number_field(:reps, class: 'form-control', min: 1)%>
+            </div>
+        </div>
+    <% end %>
+<% end %>
