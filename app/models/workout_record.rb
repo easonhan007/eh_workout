@@ -11,10 +11,12 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  distance   :integer
+#  event_id   :integer          not null
 #
 class WorkoutRecord < ApplicationRecord
   belongs_to :user
   belongs_to :event
+	belongs_to :exercise
 
   def reps_should_greater_than_zero
 		if reps and reps <= 0

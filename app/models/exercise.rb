@@ -14,6 +14,8 @@
 #
 class Exercise < ApplicationRecord
   has_many :defined_items
+  has_many :workout_records, dependent: :destroy
+
   belongs_to :category
   belongs_to :body_part
   belongs_to :user

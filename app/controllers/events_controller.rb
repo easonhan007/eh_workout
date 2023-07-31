@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    @pagy, @events = pagy(current_user.events.by_created.all)
   end
 
   # GET /events/1 or /events/1.json
@@ -60,7 +60,7 @@ class EventsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      @event = Event.find(params[:id])
+      @event = current_user.events.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

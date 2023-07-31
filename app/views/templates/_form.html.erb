@@ -17,9 +17,12 @@
   </div>
 
   <div class="mb-4" data-controller="template">
-    <h4 for="" class="form-label">Exercises <i class="bi bi-plus-circle text text-primary" data-action="click->template#append_one" style="cursor:pointer"> </i></h4>
+    <h4 for="" class="form-label">Exercises 
+      <i class="bi bi-plus-circle text text-primary" data-action="click->template#append_one" style="cursor:pointer"> </i>
+    </h4>
+    <% index = 1%>
     <%= form.fields_for :defined_items do |item_form|%>
-      <div class="row g-3 p-1" data-template-target="exercise">
+      <div class="row g-3 p-1" data-template-target="exercise" id="<%= "exercise-#{index}"%>">
         <div class="col">
           <%= item_form.collection_select :exercise_id, Exercise.sys_and(current_user).all, :id, :name, {}, class: 'form-select'%>
         </div>
@@ -31,7 +34,8 @@
         </div>
         <div class="col-1">
           <label for="" class="col-form-label">
-            <i class="bi bi-dash-circle" style="cursor: pointer" data-action="click->template#remove"></i>
+            <i class="bi bi-dash-circle" style="cursor: pointer" data-action="click->template#remove" data-index="<%= index %>"></i>
+            <% index += 1 %>
           </label>
         </div>
       </div>

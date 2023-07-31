@@ -11,6 +11,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  distance   :integer
+#  event_id   :integer          not null
 #
 class StrengthRecord < WorkoutRecord
 	validates :weight, :reps, presence: true

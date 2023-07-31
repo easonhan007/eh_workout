@@ -55,6 +55,6 @@ class DurationRecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def duration_record_params
-      params.require(:duration_record).permit(:duration, :event_id)
+      params.require(:duration_record).permit(:duration, :event_id, :exercise_id)
     end
 end

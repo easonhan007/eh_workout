@@ -17,8 +17,12 @@ class HomeController < ApplicationController
       config_item[:name] = ex.name
       config_item[:records] = []
       DefinedItem.by_exercise(ex).by_template(@template).first.set.times do 
-        config_item[:records].push(ex.record_kls.new(user_id: current_user.id, event_id: @event.id))
-      end
+        config_item[:records].push(ex.record_kls.new(
+          user_id: current_user.id, 
+          event_id: @event.id, 
+          exercise_id: ex.id
+        ))
+      end #times
       @event.config.push(config_item)
     end #each
   end #def

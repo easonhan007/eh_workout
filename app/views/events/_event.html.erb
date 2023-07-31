@@ -1,12 +1,9 @@
-<div id="<%= dom_id event %>">
-  <p>
-    <strong>Name:</strong>
-    <%= event.name %>
-  </p>
-
-  <p>
-    <strong>Template:</strong>
-    <%= event.template_id %>
-  </p>
-
+<div id="<%= dom_id event %>" class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= dark_link event.name, event_path(event) %></h5>
+    <p class="card-text"><%= event.template.name %></p>
+  </div>
+  <div class="card-footer">
+    <small class="text-body-secondary"><%= time_ago_in_words(event.created_at) %> ago</small>
+  </div>
 </div>

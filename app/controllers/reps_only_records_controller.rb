@@ -55,6 +55,6 @@ class RepsOnlyRecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reps_only_params
-      params.require(:reps_only_record).permit(:reps, :event_id)
+      params.require(:reps_only_record).permit(:reps, :event_id, :exercise_id)
     end
 end

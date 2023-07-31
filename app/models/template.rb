@@ -15,8 +15,19 @@ class Template < ApplicationRecord
   belongs_to :user
 
   validates :name, presence: true
+  validate :should_at_least_have_one_defined_item
 
   scope :system, -> { where(user_id: 1) }
   scope :by_created, -> {order('created_at DESC')}
   scope :sys_and, ->(user) { where(user_id: 1).or(Template.where(user_id: user.id)) }
+
+
+  private
+    def should_at_least_have_one_defined_item
+      count = defined_items.try(:size) || 0
+      if count.eql?(0)
+        errors.add(:template, 'should have at least one exercise')
+      end #if
+    end
+
 end

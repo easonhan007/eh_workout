@@ -11,6 +11,8 @@
 class Event < ApplicationRecord
   belongs_to :template
   has_many :workout_records
+
+  scope :by_created, -> {order('created_at DESC')}
   
   attr_accessor :config
 

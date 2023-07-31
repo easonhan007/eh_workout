@@ -55,6 +55,6 @@ class StrengthRecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def strength_record_params
-      params.require(:strength_record).permit(:weight, :reps, :event_id)
+      params.require(:strength_record).permit(:weight, :reps, :event_id, :exercise_id)
     end
 end

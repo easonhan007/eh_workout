@@ -11,6 +11,7 @@
                 <%= f.submit(class: 'btn btn-outline-success', value: 'Save')%>
             </div>
             <%= f.hidden_field(:event_id) %>
+            <%= f.hidden_field(:exercise_id) %>
             <%= render(partial: 'home/flag', locals: { msg: msg })%>
         </div>
     <% end %>

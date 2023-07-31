@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_31_034405) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_31_143522) do
   create_table "body_parts", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -41,7 +41,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_034405) do
     t.integer "template_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["template_id"], name: "index_events_on_template_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "exercises", force: :cascade do |t|
@@ -88,7 +90,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_034405) do
     t.datetime "updated_at", null: false
     t.integer "distance"
     t.integer "event_id", null: false
+    t.integer "exercise_id", null: false
     t.index ["event_id"], name: "index_workout_records_on_event_id"
+    t.index ["exercise_id"], name: "index_workout_records_on_exercise_id"
     t.index ["user_id"], name: "index_workout_records_on_user_id"
   end
 
@@ -96,10 +100,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_034405) do
   add_foreign_key "defined_items", "exercises"
   add_foreign_key "defined_items", "templates"
   add_foreign_key "events", "templates"
+  add_foreign_key "events", "users"
   add_foreign_key "exercises", "body_parts"
   add_foreign_key "exercises", "categories"
   add_foreign_key "exercises", "users"
   add_foreign_key "templates", "users"
   add_foreign_key "workout_records", "events"
+  add_foreign_key "workout_records", "exercises"
   add_foreign_key "workout_records", "users"
 end

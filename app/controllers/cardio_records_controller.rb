@@ -55,6 +55,6 @@ class CardioRecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cardio_record_params
-      params.require(:cardio_record).permit(:distance, :duration, :event_id)
+      params.require(:cardio_record).permit(:distance, :duration, :event_id, :exercise_id)
     end
 end

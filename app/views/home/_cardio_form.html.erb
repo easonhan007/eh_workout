@@ -18,6 +18,7 @@
             </div>
             <%= render(partial: 'home/flag', locals: { msg: msg })%>
             <%= f.hidden_field(:event_id) %>
+            <%= f.hidden_field(:exercise_id) %>
         </div>
     <% end %>
     <%= render(partial: 'home/errors', locals: {record: record})%>
