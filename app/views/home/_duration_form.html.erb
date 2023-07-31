@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "duration" do %>
+<turbo-frame id="duration">
     <%= form_with(model: record) do |f| %>
         <div class="row mb-2">
             <div class="col-auto">
@@ -10,6 +10,9 @@
             <div class="col-auto">
                 <%= f.submit(class: 'btn btn-outline-success', value: 'Save')%>
             </div>
+            <%= f.hidden_field(:event_id) %>
+            <%= render(partial: 'home/flag', locals: { msg: msg })%>
         </div>
     <% end %>
-<% end #turbo%>
+    <%= render(partial: 'home/errors', locals: {record: record})%>
+</turbo-frame>

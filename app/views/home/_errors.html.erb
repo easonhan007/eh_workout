@@ -1,0 +1,9 @@
+<% if record.errors.any? %>
+	<div class="my-2">
+	  <ul>
+	    <% record.errors.each do |error| %>
+	      <li class="text text-danger"><%= error.full_message %></li>
+	    <% end %>
+	  </ul>
+	</div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_30_052726) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_31_034405) do
   create_table "body_parts", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -87,6 +87,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_052726) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "distance"
+    t.integer "event_id", null: false
+    t.index ["event_id"], name: "index_workout_records_on_event_id"
     t.index ["user_id"], name: "index_workout_records_on_user_id"
   end
 
@@ -98,5 +100,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_052726) do
   add_foreign_key "exercises", "categories"
   add_foreign_key "exercises", "users"
   add_foreign_key "templates", "users"
+  add_foreign_key "workout_records", "events"
   add_foreign_key "workout_records", "users"
 end

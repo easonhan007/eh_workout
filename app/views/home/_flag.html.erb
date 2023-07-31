@@ -1,0 +1,11 @@
+<% unless msg.blank? %>
+    <% if msg.downcase.eql?('ok') %>
+		<div class="col-auto">
+			<label class="bi bi-check-lg text text-success col-form-label"></label>		
+		</div>
+    <% else %>    
+		<div class="col-auto">
+			<label class="bi bi-x text text-danger col-form-label" ></label>
+		</div>
+    <% end #if %>
+<% end %>

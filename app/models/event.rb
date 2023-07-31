@@ -10,6 +10,7 @@
 #
 class Event < ApplicationRecord
   belongs_to :template
+  has_many :workout_records
   
   attr_accessor :config
 

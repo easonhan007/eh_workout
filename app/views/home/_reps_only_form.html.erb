@@ -1,4 +1,4 @@
-<%= turbo_frame_tag 'reps_only' do%>
+<turbo-frame id="reps_only">
     <%= form_with(model: record) do |f| %>
         <div class="row mb-2">
             <div class="col-auto">
@@ -7,6 +7,12 @@
             <div class="col-auto">
                 <%= f.number_field(:reps, class: 'form-control', min: 1)%>
             </div>
+            <div class="col-auto">
+                <%= f.submit(class: 'btn btn-outline-success', value: 'Save')%>
+            </div>
+            <%= render(partial: 'home/flag', locals: { msg: msg })%>
+            <%= f.hidden_field(:event_id) %>
         </div>
     <% end %>
-<% end %>
+    <%= render(partial: 'home/errors', locals: {record: record})%>
+</turbo-frame>

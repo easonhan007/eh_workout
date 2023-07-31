@@ -1,41 +1,23 @@
-<%= form_with(model: event) do |form| %>
-  <% if event.errors.any? %>
-    <div style="color: red">
-      <h4><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h4>
+<div class="my-4">
+  <h4 class="text text-secondary"><%= event.name %></h4>
+</div>
 
-      <ul>
-        <% event.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div class="mb-4">
+  <% event.config.each do |item|%>
+    <div class="row mb-4">
+      <strong class="text-secondary text mb-2"><%= item[:name]%></strong>
+        <% item[:records].each do |record| %>
+          <%= render 'cardio_form', record: record, msg: nil if record.type.eql?('CardioRecord')%>
+          <%= render 'duration_form', record: record, msg: nil if record.type.eql?('DurationRecord')%>
+          <%= render 'strength_form', record: record, msg: nil if record.type.eql?('StrengthRecord')%>
+          <%= render 'reps_only_form', record: record, msg: nil if record.type.eql?('RepsOnlyRecord')%>
+        <% end #each%>
     </div>
-  <% end %>
+  <% end #each%>
+</div>
 
-  <div class="mb-4">
-    <%= form.label :name, class: 'form-label' %>
-    <%= form.text_field :name, class: 'form-control', required: '' %>
+<div class="mb-4 row">
+  <div class="col-auto">
+    <%= link_to 'Cancel', '/', class: 'btn btn-outline-dark' %>
   </div>
-
-  <div class="mb-4">
-    <% event.config.each do |item|%>
-      <div class="row">
-        <strong class="text-secondary text mb-2"><%= item[:name]%></strong>
-          <% item[:records].each do |record| %>
-            <%= render 'cardio_form', record: record if record.type.eql?('CardioRecord')%>
-            <%= render 'duration_form', record: record if record.type.eql?('DurationRecord')%>
-            <%= render 'strength_form', record: record if record.type.eql?('StrengthRecord')%>
-            <%= render 'reps_only_form', record: record if record.type.eql?('RepsOnlyRecord')%>
-          <% end #each%>
-      </div>
-    <% end #each%>
-  </div>
-
-  <div class="mb-4 row">
-    <div class="col-auto">
-      <%= form.submit(class: 'btn btn-outline-primary', value: 'Save')%>
-    </div>
-    <div class="col-auto">
-      <%= link_to 'Cancel', '/', class: 'btn btn-outline-dark' %>
-    </div>
-  </div>
-<% end %>
+</div>

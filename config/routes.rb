@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resource :cardio_records, only: %w[create destroy]
-  resource :strength_records, only: %w[create destroy]
-  resource :duration_records, only: %w[create destroy]
-  resource :reps_only_records, only: %w[create destroy]
+  resources :cardio_records
+  resources :strength_records
+  resources :duration_records
+  resources :reps_only_records
   
   resources :events
   resources :templates
