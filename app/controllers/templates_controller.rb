@@ -1,5 +1,6 @@
 class TemplatesController < ApplicationController
-  before_action :set_template, only: %i[ show edit update destroy ]
+  before_action :set_template, only: %i[ show ]
+  before_action :set_mine_template, only: %i[ edit update destroy ]
 
   # GET /templates or /templates.json
   def index
@@ -63,7 +64,11 @@ class TemplatesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_template
-      @template = Template.find(params[:id])
+      @template = Template.sys_and(current_user).find(params[:id])
+    end
+
+    def set_mine_template
+      @template = current_user.templates.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

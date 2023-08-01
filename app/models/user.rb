@@ -19,4 +19,15 @@ class User < ApplicationRecord
 
   has_many :templates
   has_many :events
+  has_many :exercises
+
+  def admin?
+    id.eql?(1)
+  end
+
+  def has_permission?(collection_name, obj)
+    return true if admin?
+    send(collection_name).exists?(id: obj.id)
+  end
+
 end

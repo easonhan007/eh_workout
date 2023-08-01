@@ -7,6 +7,7 @@
 #  template_id :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  user_id     :integer          not null
 #
 class Event < ApplicationRecord
   belongs_to :template

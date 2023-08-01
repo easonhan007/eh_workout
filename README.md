@@ -108,3 +108,9 @@ STI, parent is WorkoutRecords
 - duration
 - distance
 - user_id
+
+
+### TODO
+
+- auto carculate the duration, translate seconds to minutes 
+- add a congratulation page when users finish their workouts 

@@ -6,12 +6,14 @@
       <div class="col">
         <%= link_to "Back to templates", templates_path, class: 'btn btn-outline-dark'%>
       </div>
-      <div class="col">
-        <%= link_to "Edit this template", edit_template_path, class: 'btn btn-outline-primary'%>
-      </div>
-      <div class="col">
-        <%= button_to "Destroy this template", @template, method: :delete, class: 'btn btn-outline-danger' %>
-      </div>
+      <% if current_user.has_permission?('templates', @template)%>
+        <div class="col">
+          <%= link_to "Edit this template", edit_template_path, class: 'btn btn-outline-primary'%>
+        </div>
+        <div class="col">
+          <%= button_to "Destroy this template", @template, method: :delete, class: 'btn btn-outline-danger' %>
+        </div>
+      <% end %>
     </div>
 
   </div>
