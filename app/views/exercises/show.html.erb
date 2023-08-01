@@ -4,14 +4,18 @@
 
     <div class="row my-4">
       <div class="col">
-        <%= link_to "Edit this exercise", edit_exercise_path(@exercise), class: 'btn btn-outline-primary'%> 
-      </div>
-      <div class="col">
         <%= link_to "Back to exercises", exercises_path, class: 'btn btn-outline-dark'%>
       </div>
-      <div class="col">
-        <%= button_to "Destroy this exercise", @exercise, method: :delete, class: 'btn btn-outline-danger' %>
-      </div>
+      
+      <% if current_user.has_permission?('exercises', @exercise) %>
+        <div class="col">
+          <%= link_to "Edit this exercise", edit_exercise_path(@exercise), class: 'btn btn-outline-primary'%> 
+        </div>
+        <div class="col">
+          <%= button_to "Destroy this exercise", @exercise, method: :delete, class: 'btn btn-outline-danger' %>
+        </div>
+      <% end %>
+      
     </div>
 
   </div>
