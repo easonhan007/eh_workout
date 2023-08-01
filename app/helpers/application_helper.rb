@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def dark_link(name, path)
-    link_to name, path, class: 'link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover'
+    link_to name, path, class: 'link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover'
   end
 
 end
